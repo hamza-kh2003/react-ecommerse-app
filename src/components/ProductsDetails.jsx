@@ -1,7 +1,10 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 const ProductsDetails = () => {
-  return <div></div>;
+  const selectedProduct = useSelector((state) => {
+    return state.products.selectedItem;
+  });
+  return <div>{selectedProduct.title}</div>;
 };
 
 export default ProductsDetails;

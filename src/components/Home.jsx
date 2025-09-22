@@ -1,14 +1,17 @@
 import ProductsGrid from "./ProductsGrid";
-
+import Footer from "../components/Footer";
+import { useDispatch } from "react-redux";
+import { setSelectedCategory } from "../features/products/ProductSlice";
 const productsCatagories = [
   "All",
-  "Graphic Cards",
-  "Laptop",
-  "Monitors",
-  "Power Supply",
+  "electronics",
+  "jewelery",
+  "men's clothing",
+  "women's clothing",
 ];
 
 const Home = () => {
+  const dispatch = useDispatch();
   return (
     <div>
       <div className="bg "></div>
@@ -19,6 +22,7 @@ const Home = () => {
               <button
                 key={index}
                 className="bg-gray-300 py-2 px-4 rounded-md text-black hover:bg-zinc-400 transition-all ease-in active:scale-105 mr-4 cursor-pointer "
+                onClick={() => dispatch(setSelectedCategory(cat))}
               >
                 {cat}
               </button>
@@ -27,6 +31,7 @@ const Home = () => {
         </div>
       </div>
       <ProductsGrid />
+      <Footer />
     </div>
   );
 };

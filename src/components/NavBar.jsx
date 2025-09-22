@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { User, ShoppingCart } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-//import logo from "../assets/logo.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchItem } from "../features/products/ProductSlice";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const searchProduct = useSelector((state) => state.products.searchItem);
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -64,6 +66,10 @@ const NavBar = () => {
             type="text"
             placeholder="Search Product"
             className=" bg-zinc-100 border border-zinc-200  mx-3 sm:mx-0  max-w-[200px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] w-full  p-1 outline-none  rounded-sm"
+            value={searchProduct}
+            onChange={(e) => {
+              dispatch(setSearchItem(e.target.value));
+            }}
           />
           <Link to="">
             <ShoppingCart
