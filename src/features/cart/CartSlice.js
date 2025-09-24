@@ -26,7 +26,12 @@ const cartSlice = createSlice({
         return item.id === action.payload.id;
       });
 
-      if (item) item.quantity.action.payload.quantity;
+      if (item) item.quantity = action.payload.quantity;
+
+      if (item.quantity === 0)
+        state.items = state.items.filter((item) => {
+          return item.id !== action.payload.id;
+        });
     },
   },
 });
