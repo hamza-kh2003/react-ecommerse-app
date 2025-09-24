@@ -7,7 +7,6 @@ const ProductsGrid = () => {
   //const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.filteredItems);
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {

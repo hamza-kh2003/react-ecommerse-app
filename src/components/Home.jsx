@@ -1,7 +1,7 @@
 import ProductsGrid from "./ProductsGrid";
-import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
 import { setSelectedCategory } from "../features/products/ProductSlice";
+import Footer from "../components/Footer";
 const productsCatagories = [
   "All",
   "electronics",

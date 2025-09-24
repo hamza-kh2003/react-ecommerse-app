@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { User, ShoppingCart } from "lucide-react";
+import { User, ShoppingCart, LucideStamp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchItem } from "../features/products/ProductSlice";
@@ -8,6 +8,12 @@ const NavBar = () => {
   const dropdownRef = useRef(null);
   const searchProduct = useSelector((state) => state.products.searchItem);
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => {
+    return state.cart.items;
+  });
+  const itemCount = cartItems.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -71,12 +77,19 @@ const NavBar = () => {
               dispatch(setSearchItem(e.target.value));
             }}
           />
-          <Link to="">
-            <ShoppingCart
-              size={54}
-              className="cursor-pointer bg-gray-100 py-2 px-3 rounded-full"
-            />
-          </Link>
+          <div className="relative">
+            <Link to="/card">
+              <ShoppingCart
+                size={54}
+                className="cursor-pointer bg-gray-100 py-2 px-3 rounded-full"
+              />
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-5 bg-blue-600 text-white text-xl rounded-full h-7 w-7 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
+          </div>
         </nav>
       </div>
     </header>

@@ -5,7 +5,7 @@ const initialState = {
   filteredItems: [],
   searchItem: "",
   selectedCateogry: "All",
-  /**/ selectedItem: "",
+  //selectedItem: "",
 };
 
 const filterProducts = (state) => {
@@ -46,6 +46,6 @@ export const {
   setSearchItem,
   setProducts,
   setSelectedCategory,
-  setSelectesItem,
+  // setSelectesItem,
 } = productsSlice.actions;
 export default productsSlice.reducer;
